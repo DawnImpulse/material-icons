@@ -1,15 +1,21 @@
 <template>
   <v-app style="background-color: #EEEEEE">
-    <v-container>
-      <!--filter-->
-      <v-row></v-row>
+    <v-container fluid class="pa-0" style="width: 100vw">
+      <!--heading-->
+      <v-row
+        justify="center"
+        class="pt-8 pb-16"
+        style="background-color: deepskyblue"
+      >
+        <span class="text-h3 font-weight-bold">Material Design Icons</span>
+      </v-row>
 
       <!--icons-->
       <!--list-->
       <v-row justify="center" class="mt-6">
         <v-col cols="8">
-          <v-card class="pt-8">
-            <v-row justify="center">
+          <v-card class="pt-8 pb-8  ">
+            <v-row>
               <v-col
                 align="center"
                 cols="2"
