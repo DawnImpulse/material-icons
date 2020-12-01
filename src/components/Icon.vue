@@ -4,7 +4,6 @@
       <v-icon
         v-bind="attrs"
         v-on="on"
-        :color="color"
         :style="
           icon.meta.author !== 'Google'
             ? 'border-radius: 4px; border-style: solid; border-color: coral; border-width: 1px'

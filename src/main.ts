@@ -4,8 +4,10 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import infiniteScroll from "vue-infinite-scroll";
 
 Vue.config.productionTip = false;
+Vue.use(infiniteScroll);
 
 new Vue({
   router,
