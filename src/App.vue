@@ -16,6 +16,15 @@
         <v-row justify="center" class="mt-6">
           <v-col cols="6">
             <v-card class="pt-8 pb-8">
+              <!--search-->
+              <v-row class="mx-12">
+                <v-text-field
+                  v-model="search"
+                  prepend-icon="mdi-magnify"
+                  label="Search"
+                ></v-text-field>
+              </v-row>
+              <!--icons-->
               <v-row>
                 <v-col
                   align="center"
@@ -46,7 +55,9 @@ export default Vue.extend({
   components: { Icon },
   data: () => ({
     icons: [{ icon: "", meta: {} }],
-    mdiIcons: new Icons()
+    mdiIcons: new Icons(),
+    search: "",
+    waitingForSearch: false
   }),
   methods: {
     loadMore() {
@@ -60,6 +71,17 @@ export default Vue.extend({
   async created() {
     await this.mdiIcons.init();
     this.icons = this.mdiIcons.getIcons();
+  },
+  watch: {
+    search() {
+      if (!this.waitingForSearch) {
+        setTimeout(() => {
+          console.log(this.search);
+          this.waitingForSearch = false;
+        }, 2000); // 1 sec delay
+      }
+      this.waitingForSearch = true;
+    }
   }
 });
 </script>
