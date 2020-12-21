@@ -24,6 +24,7 @@
                   append-icon="mdi-arrow-right-thick"
                   append-outer-icon="mdi-close"
                   label="Search"
+                  @keyup.enter="searchIcons"
                   @click:append="searchIcons"
                   @click:append-outer="clearSearch"
                 ></v-text-field>
@@ -73,7 +74,7 @@ export default Vue.extend({
 
     // search icons
     searchIcons() {
-      this.icons = this.mdiIcons.search(this.search);
+      this.icons = this.mdiIcons.search(this.search.toLowerCase());
     },
 
     // clear search

@@ -50,8 +50,19 @@ export default class Icons {
     meta.forEach((v, i) => {
       if (v.name.includes(query)) map(v, i);
       else {
+        // search in aliases
         for (const j in v.aliases) {
-          if (v.aliases[j].includes(query)) {
+          const alias = v.aliases[j].toLowerCase();
+          if (alias.includes(query)) {
+            map(v, i);
+            break;
+          }
+        }
+
+        // search in tags
+        for (const k in v.tags) {
+          const tag = v.tags[k].toLowerCase();
+          if (tag.includes(query)) {
             map(v, i);
             break;
           }
