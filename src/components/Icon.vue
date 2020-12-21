@@ -10,6 +10,7 @@
             : ''
         "
         class="pa-2"
+        :color="color"
         >{{ icon.icon }}
       </v-icon>
     </template>

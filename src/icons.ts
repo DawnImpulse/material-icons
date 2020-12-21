@@ -15,7 +15,7 @@ export default class Icons {
    * @param size
    */
   getIcons(size = 0) {
-    let icons = [{}];
+    let icons = [{ icon: "", meta: {} }];
     icons = [];
     const values = Object.values(this.mdi);
     if (values.length >= size) {
