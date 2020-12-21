@@ -21,7 +21,11 @@
                 <v-text-field
                   v-model="search"
                   prepend-icon="mdi-magnify"
+                  append-icon="mdi-arrow-right-thick"
+                  append-outer-icon="mdi-close"
                   label="Search"
+                  @click:append="searchIcons"
+                  @click:append-outer="clearSearch"
                 ></v-text-field>
               </v-row>
               <!--icons-->
@@ -56,32 +60,33 @@ export default Vue.extend({
   data: () => ({
     icons: [{ icon: "", meta: {} }],
     mdiIcons: new Icons(),
-    search: "",
-    waitingForSearch: false
+    search: ""
   }),
   methods: {
+    // load more icons
     loadMore() {
-      if (this.icons.length !== 1) {
-        console.log("here");
+      if (this.search === "" && this.icons.length !== 1) {
         const icons = this.mdiIcons.getIcons(this.icons.length);
         icons.forEach(item => this.icons.push(item));
+      }
+    },
+
+    // search icons
+    searchIcons() {
+      this.icons = this.mdiIcons.search(this.search);
+    },
+
+    // clear search
+    clearSearch() {
+      if (this.search !== "") {
+        this.search = "";
+        this.icons = this.mdiIcons.getIcons();
       }
     }
   },
   async created() {
     await this.mdiIcons.init();
     this.icons = this.mdiIcons.getIcons();
-  },
-  watch: {
-    search() {
-      if (!this.waitingForSearch) {
-        setTimeout(() => {
-          console.log(this.search);
-          this.waitingForSearch = false;
-        }, 2000); // 1 sec delay
-      }
-      this.waitingForSearch = true;
-    }
   }
 });
 </script>
