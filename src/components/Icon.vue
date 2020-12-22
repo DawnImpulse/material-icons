@@ -11,6 +11,7 @@
         "
         class="pa-2"
         :color="color"
+        @click="downloadSvg"
         >{{ icon.icon }}
       </v-icon>
     </template>
@@ -20,6 +21,7 @@
 
 <script>
 import randomColor from "randomcolor";
+import Icons from "../icons";
 
 export default {
   name: "Icon",
@@ -32,6 +34,11 @@ export default {
       return randomColor({
         luminosity: "dark"
       });
+    }
+  },
+  methods: {
+    downloadSvg() {
+      Icons.download(`${this.icon.meta.name}.svg`, this.icon.icon);
     }
   }
 };

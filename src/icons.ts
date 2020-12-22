@@ -2,6 +2,7 @@
  * @info utility on icons
  */
 import meta from "@/lib/meta.json";
+import FileSaver from "file-saver";
 
 export default class Icons {
   private mdi;
@@ -72,5 +73,13 @@ export default class Icons {
 
     console.log(icons);
     return icons;
+  }
+
+  static download(filename, data) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="${data}" /></svg>`;
+    FileSaver.saveAs(
+      new Blob([svg], { type: "svg+xml;charset=utf-8" }),
+      filename
+    );
   }
 }
